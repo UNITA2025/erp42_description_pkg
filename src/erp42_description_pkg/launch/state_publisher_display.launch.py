@@ -1,4 +1,12 @@
-# URDF 기반 TF + RViz2 시각화 (for test!, 실제 실행 할 때에는 state_publisher.launch.py만 실행)
+#!/usr/bin/env python3
+#=====================================================#
+# 기능: # URDF 기반 TF + RViz2 시각화
+# - for test!, 실제 실행 할 때에는 state_publisher.launch.py만 실행)
+#
+# TODO : 작업 완료
+# 최종 수정일: 2025.08.26
+# 편집자: 김형진
+#=====================================================#
 from launch import LaunchDescription
 from launch_ros.actions import Node
 from launch.substitutions import Command, PathJoinSubstitution
