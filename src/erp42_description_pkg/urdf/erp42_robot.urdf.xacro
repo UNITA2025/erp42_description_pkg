@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<robot name="erp42_full" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- 본체 기준 -->
+  <link name="base_link"/>
+
+  <!-- IMU -->
+  <link name="imu_link"/>
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_link"/>
+    <child  link="imu_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- GPS -->
+  <link name="gps_link"/>
+  <joint name="gps_joint" type="fixed">
+    <parent link="base_link"/>
+    <child  link="gps_link"/>
+    <origin xyz="0 0 0.15" rpy="0 0 0"/>
+  </joint>
+
+  <!-- LiDAR (velodyne) -->
+  <link name="lidar_link"/>
+  <joint name="lidar_joint" type="fixed">
+    <parent link="base_link"/>
+    <child  link="lidar_link"/>
+    <origin xyz="0.614 0.0 -0.505" rpy="0 0 0"/>
+  </joint>
+
+  <!-- ===== 카메라들: parent = lidar_link (velodyne) ===== -->
+
+  <!-- front_up -->
+  <link name="camera_front_up_frame"/>
+  <joint name="camera_front_up_joint" type="fixed">
+    <parent link="lidar_link"/>
+    <child  link="camera_front_up_frame"/>
+    <!-- translation: [-0.40, -0.003556, 0.763066] -->
+    <!-- rotation(q): [-0.495625, 0.503051, -0.508326, 0.492850] -> rpy(rad): [-1.568205, -0.008021, -1.593710] -->
+    <origin xyz="-0.40 -0.003556 0.763066" rpy="-1.568205 -0.008021 -1.593710"/>
+  </joint>
+
+  <!-- front_down -->
+  <link name="camera_front_down_frame"/>
+  <joint name="camera_front_down_joint" type="fixed">
+    <parent link="lidar_link"/>
+    <child  link="camera_front_down_frame"/>
+    <!-- translation: [-0.40, 0.010905, 0.450183] -->
+    <!-- rotation(q): [-0.570941, 0.569794, -0.428440, 0.407185] -> rpy(rad): [-1.876929, -0.025207, -1.587254] -->
+    <origin xyz="-0.40 0.010905 0.450183" rpy="-1.876929 -0.025207 -1.587254"/>
+  </joint>
+
+  <!-- left -->
+  <link name="camera_left_frame"/>
+  <joint name="camera_left_joint" type="fixed">
+    <parent link="lidar_link"/>
+    <child  link="camera_left_frame"/>
+    <!-- translation: [-0.90, 0.241359, 0.697326] -->
+    <!-- rotation(q): [-0.738472, 0.414699, -0.265391, 0.460708] -> rpy(rad): [-2.020449, -0.009858, -1.029544] -->
+    <origin xyz="-0.90 0.241359 0.697326" rpy="-2.020449 -0.009858 -1.029544"/>
+  </joint>
+
+  <!-- right -->
+  <link name="camera_right_frame"/>
+  <joint name="camera_right_joint" type="fixed">
+    <parent link="lidar_link"/>
+    <child  link="camera_right_frame"/>
+    <!-- translation: [-0.90, -0.271260, 0.723125] -->
+    <!-- rotation(q): [-0.390402, 0.753295, -0.472325, 0.238833] -> rpy(rad): [-2.026119, -0.008970, -2.190892] -->
+    <origin xyz="-0.90 -0.271260 0.723125" rpy="-2.026119 -0.008970 -2.190892"/>
+  </joint>
+
+</robot>
